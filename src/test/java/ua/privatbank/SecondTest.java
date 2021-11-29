@@ -22,6 +22,7 @@ public class SecondTest {
         Configuration.headless = false;
 
         Selenide.open("https://privatbank.ua/ru");
+        Thread.sleep(10000);
 
 //        System.setProperty("webdriver.chrome.driver","D:\\JAVA\\chromedriver_win32\\chromedriver.exe");
 //        ChromeDriver driver = new ChromeDriver();
