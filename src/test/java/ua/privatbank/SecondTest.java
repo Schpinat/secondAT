@@ -26,7 +26,7 @@ public class SecondTest {
 
 //        System.setProperty("webdriver.chrome.driver","D:\\JAVA\\chromedriver_win32\\chromedriver.exe");
 //        ChromeDriver driver = new ChromeDriver();
-//        // Заходим на страницу
+        // Заходим на страницу
 // //       driver.get("https://privatbank.ua/ru");
 //        // Ожидаем загрузки
 //        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
