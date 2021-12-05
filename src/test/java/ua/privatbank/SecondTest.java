@@ -3,55 +3,32 @@ package ua.privatbank;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 
 public class SecondTest {
     @Test
-    public void secondTest () throws InterruptedException {
+
+    public void emailTest () throws InterruptedException {
         // Инициализируем веб-драйвер
         WebDriverManager.chromedriver().setup();
         Configuration.browser = "chrome";
         Configuration.driverManagerEnabled = true;
         Configuration.headless = false;
+        Configuration.holdBrowserOpen = true;
 
-        Selenide.open("https://privatbank.ua/ru");
-        Thread.sleep(10000);
+        Selenide.open("https://accounts.ukr.net/login?lang=ru");
 
-//        System.setProperty("webdriver.chrome.driver","D:\\JAVA\\chromedriver_win32\\chromedriver.exe");
-//        ChromeDriver driver = new ChromeDriver();
-        // Заходим на страницу
-// //       driver.get("https://privatbank.ua/ru");
-//        // Ожидаем загрузки
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[@class=\"col-xs-6\"]")));
-//        //Вытягиваем курс продажи доллара
-//        String cursSale = (driver.findElement(By.xpath("//td[@id=\"USD_sell\"]")).getText());
-//        //Очищаем поле ввода конвертера
-//        driver.findElement(By.xpath("//input[@name=\"inner_currency\"]")).clear();
-//        //Вставляем курс продажи
-//        driver.findElement(By.xpath("//input[@name=\"inner_currency\"]")).sendKeys(cursSale);
-//        //Ожидаем конвертации
-//        Thread.sleep(3000);
-//        //Вытягивае итоговое значение конвертации
-//
-//       // driver.findElement(By.xpath("//input[@name=\"outer_currency\"]")).getText();
-//        String cursResult =  driver.findElement(By.xpath("//input[@name=\"outer_currency\"]")).getText();
-//        System.out.println("curs from vidjet is " + cursResult);
-//        //Проверяем итоговое значение конвертации
-//        String etalonCursResult = "1";
-//        System.out.println("etalon curs" + etalonCursResult);
+        Selenide.$x("//input[@name='login']").setValue("schpinat");
+        Selenide.$x("//input[@name='password']").setValue("test123test");
+        Selenide.$x("//button[@type='submit']").click();
+        Selenide.$x("//button[@class='button primary compose']").click();
+        Selenide.$x("//input[@name=\"toFieldInput\"]").setValue("schpinat@ukr.net");
 
-       // Assert.assertEquals(cursResult,etalonCursResult);
-
-
-
+        Selenide.$x("//input[@name=\"subject\"]").setValue("SPAM");
+        Selenide.$x("//iframe[@id=\"mce_0_ifr\"]").click();
+        Selenide.$x("//iframe[@id=\"mce_0_ifr\"]").sendKeys("Это сообщение было отправлено автоматизированным программным обеспечением.");
+        Selenide.$x("//div[@class = \"controls\"]/button[@class = \"button primary send\" ]").click();
 
     }
 
